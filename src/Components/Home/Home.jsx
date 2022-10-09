@@ -14,6 +14,7 @@ const upcoming = "upcoming"
 const nowPlaying = "now_playing"
 const popular= "popular"
 const topRated = "top_rated"
+const popularTv = "popular_tv"
 
 const Card = ({img}) => (
     <img className='card' src={img} alt="cover" />
@@ -43,6 +44,9 @@ const Home = () => {
     const [nowPlayingMovies, setNowPlayingMovies] = useState([])
     const [popularMovies, setPopularMovies] = useState([])
     const [topRatedMovies, setTopRatedMovies] = useState([])
+    const [popularTv, setPopularTv] = useState([])
+
+
     const [genre, setGenre] = useState([])
     
 
@@ -71,8 +75,14 @@ const Home = () => {
          setTopRatedMovies(results)
 
         };
+        const fetchPopularTv = async() => {
+         const { data:{results} }= await axios.get(`${url}/tv/${popular}?api_key=${apiKey}`)
+         setPopularTv(results)
+
+        };
+
+
         const getAllGenre = async() => {
-            // https://api.themoviedb.org/3/genre/movie/list?api_key=aba00920b35233ad77e7669b4530a746
          const { data:{genres} }= await axios.get(`${url}/genre/movie/list?api_key=${apiKey}`)
          setGenre(genres)
 
@@ -84,6 +94,7 @@ const Home = () => {
         fetchNowPlaying()
         fetchPopular()
         fetchTopRated()
+        fetchPopularTv()
 
     }, [])
     return (
@@ -104,9 +115,11 @@ const Home = () => {
             </div>
 
             <Row title={"Popular Movies"} arr={popularMovies} />
+            <Row title={"Popular TV Shows"} arr={popularTv} /> 
             <Row title={"Upcoming Movies"} arr={upcomingMovies} />
             <Row title={"Top Rated Movies"} arr={topRatedMovies} />
             <Row title={"Now Playing Movies"} arr={nowPlayingMovies} />
+            
             
 
             <div className='genreBox'>
