@@ -103,10 +103,11 @@ const Home = () => {
 
             </div>
 
-            <Row title={"Upcoming Movies"} arr={upcomingMovies} />
-            <Row title={"Now Playing Movies"} arr={nowPlayingMovies} />
             <Row title={"Popular Movies"} arr={popularMovies} />
+            <Row title={"Upcoming Movies"} arr={upcomingMovies} />
             <Row title={"Top Rated Movies"} arr={topRatedMovies} />
+            <Row title={"Now Playing Movies"} arr={nowPlayingMovies} />
+            
 
             <div className='genreBox'>
 
